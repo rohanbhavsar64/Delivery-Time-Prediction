@@ -192,7 +192,7 @@ from sklearn.metrics import r2_score
 
 #r2_score(y_test, pipe.predict(X_test))
 st.header('Delivery Time Predication APP')
-part=st.sidebar.radio(['predication','Analysis'])
+part=st.sidebar.radio(" ", ["Prediction", "Analysis"],horizontal=True)
 if part=='predication':
     col1,col2,col3=st.columns(3)
     with col1:
