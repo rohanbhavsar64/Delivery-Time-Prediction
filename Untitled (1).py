@@ -206,7 +206,6 @@ with col2:
     e=st.number_input('offer_above')
 with col3:
     f=st.number_input('offer_percentage')
-    
 n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
 if st.button('Predict Time'):
     st.subheader('Delivery Time :'+str(int(n[0])))
