@@ -193,7 +193,7 @@ from sklearn.metrics import r2_score
 #r2_score(y_test, pipe.predict(X_test))
 st.header('Delivery Time Predication APP')
 part=st.sidebar.radio(" ", ["Prediction", "Analysis"])
-if part=='Predication':
+if part=='Prediction':
     col1,col2,col3=st.columns(3)
     with col1:
         a=st.selectbox('Hotel Name',df['hotel_name'].unique())
