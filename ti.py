@@ -193,7 +193,7 @@ from sklearn.metrics import r2_score
 #r2_score(y_test, pipe.predict(X_test))
 st.header('Delivery Time Predication APP')
 part=st.sidebar.radio(" ", ["Prediction", "Analysis"])
-if part=='predication':
+if part=='Predication':
     col1,col2,col3=st.columns(3)
     with col1:
         a=st.selectbox('Hotel Name',df['hotel_name'].unique())
@@ -228,10 +228,10 @@ else:
     y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
     fig2=px.line(y)
     st.write(fig2)
-    w=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['time_minute'].mean().nlargest(10)
+    w=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['time_minute']
     fig3=px.line(w)
     st.write(fig3)
-    z=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['rating'].mean().nlargest(10)
+    z=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['rating']
     fig4=px.line(z)
     st.write(fig4)
     
