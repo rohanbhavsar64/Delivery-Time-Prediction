@@ -1,11 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[52]:
-
-
 import pandas as pd
 import numpy as np
+import streamlit as st
 
 
 # In[53]:
@@ -14,19 +9,7 @@ import numpy as np
 df=pd.read_csv('swiggy_cleaned.csv')
 
 
-# In[54]:
 
-
-df
-
-
-# In[55]:
-
-
-df.info()
-
-
-# In[56]:
 
 
 df['time_minutes']=df['time_minutes'].str.split('-').str[0]
@@ -44,16 +27,9 @@ df['time_minutes']=df['time_minutes'].astype(float)
 df['time_minutes']=df['time_minutes'].fillna(df['time_minutes'].mean())
 
 
-# In[59]:
 
 
-df.info()
 
-
-# In[60]:
-
-
-df['offer_above'].unique()
 
 
 # In[61]:
@@ -96,10 +72,6 @@ df=df[df['offer_above']!=100000]
 # In[67]:
 
 
-df
-
-
-# In[68]:
 
 
 df['rating']=df['rating'].str.split(' ').str[0]
@@ -144,8 +116,6 @@ X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.25,random_state=4
 # In[75]:
 
 
-X_train
-
 
 # In[76]:
 
@@ -168,14 +138,6 @@ trf=ColumnTransformer([
     ('trf',OneHotEncoder(max_categories=6,sparse_output=False,handle_unknown = 'ignore'),['hotel_name','food_type','location'])]
 ,remainder='passthrough')
 
-
-# In[79]:
-
-
-ohe.categories_
-
-
-# In[109]:
 
 
 from sklearn.pipeline import Pipeline
@@ -204,19 +166,19 @@ pipe.fit(X_train,y_train)
 # In[175]:
 
 
-df.columns
+
 
 
 # In[176]:
 
 
-pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array(['KFC',4.2,'Burgers, Biryani, American, Snacks, Fast Food','Kandivali East',80,40]).reshape(1,6)))
+n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array(['KFC',4.2,'Burgers, Biryani, American, Snacks, Fast Food','Kandivali East',80,40]).reshape(1,6)))
 
 
 # In[177]:
 
 
-df[df['hotel_name']=='KFC']
+#df[df['hotel_name']=='KFC']
 
 
 # In[178]:
@@ -228,16 +190,24 @@ from sklearn.metrics import r2_score
 # In[179]:
 
 
-r2_score(y_test, pipe.predict(X_test))
+#r2_score(y_test, pipe.predict(X_test))
+st.header('Delivery Time Predication APP')
+col1,col2,col3=st.columns(3)
+with col1:
+    a=st.selectbox('Hotel Name',df['hotel_name'].unique())
+with col2:
+    b=st.number_input('Rating')
+with col3:
+    c=st.selectbox('Food Type',df['food_type'].unique())
+col1,col2,col3=st.columns(3)
+with col1:
+    d=st.selectbox('Location',df['location'].unique())
+with col2:
+    e=st.number_input('offer_above')
+with col3:
+    f=st.number_input('offer_percentage')
+n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
