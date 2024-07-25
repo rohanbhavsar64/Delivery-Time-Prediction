@@ -228,12 +228,6 @@ else:
     y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
     fig2=px.line(y)
     st.write(fig2)
-    w=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['time_minute']
-    fig3=px.line(w)
-    st.write(fig3)
-    z=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['rating']
-    fig4=px.line(z)
-    st.write(fig4)
     
     
 
