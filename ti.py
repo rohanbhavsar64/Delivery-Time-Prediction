@@ -209,7 +209,7 @@ with col3:
     
 n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
 if st.button('Predict Time'):
-    st.write(int(n[0]))
+    st.write('Delivery Time'+str(int(n[0])))
 
 
 
