@@ -192,7 +192,7 @@ from sklearn.metrics import r2_score
 
 #r2_score(y_test, pipe.predict(X_test))
 st.header('Delivery Time Predication APP')
-part=st.sidebar.radio(" ", ["Prediction", "Analysis"],horizontal=True)
+part=st.sidebar.radio(" ", ["Prediction", "Analysis"])
 if part=='predication':
     col1,col2,col3=st.columns(3)
     with col1:
@@ -212,6 +212,7 @@ if part=='predication':
     n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
     if st.button('Predict Time'):
         st.write('Delivery Time'+str(int(n[0])))
+import plotly.express as px
 else:
     col1,col2,col3=st.columns(3)
     with col1:
