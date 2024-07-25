@@ -217,11 +217,11 @@ else:
     import plotly.express as px
     col1,col2,col3=st.columns(3)
     with col1:
-        r=st.number_input('offer_above')
+        r=st.number_input('offer_above',min_value=100, max_value=10000, value="min", step=100)
     with col2:
         n=st.selectbox('Location',df['location'].unique())
     with col3:
-        o=st.number_input('offer_percentage')
+        o=st.number_input('offer_percentage',min_value=0, max_value=100, value="min", step=10)
     x=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['time_minutes'].mean().nlargest(10)
     fig1=px.line(x)
     st.write(fig1)
