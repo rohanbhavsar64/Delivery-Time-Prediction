@@ -192,25 +192,47 @@ from sklearn.metrics import r2_score
 
 #r2_score(y_test, pipe.predict(X_test))
 st.header('Delivery Time Predication APP')
-col1,col2,col3=st.columns(3)
-with col1:
-    a=st.selectbox('Hotel Name',df['hotel_name'].unique())
-with col2:
-    b=st.number_input('Rating')
-with col3:
-    c=st.selectbox('Food Type',df['food_type'].unique())
-col1,col2,col3=st.columns(3)
-with col1:
-    d=st.selectbox('Location',df['location'].unique())
-with col2:
-    e=st.number_input('offer_above')
-with col3:
-    f=st.number_input('offer_percentage')
+part=st.sidebar.radio(['predication','Analysis'])
+if part=='predication':
+    col1,col2,col3=st.columns(3)
+    with col1:
+        a=st.selectbox('Hotel Name',df['hotel_name'].unique())
+    with col2:
+        b=st.number_input('Rating')
+    with col3:
+        c=st.selectbox('Food Type',df['food_type'].unique())
+    col1,col2,col3=st.columns(3)
+    with col1:
+        d=st.selectbox('Location',df['location'].unique())
+    with col2:
+        e=st.number_input('offer_above')
+    with col3:
+        f=st.number_input('offer_percentage')
     
-n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
-if st.button('Predict Time'):
-    st.write('Delivery Time'+str(int(n[0])))
-
-
+    n=pipe.predict(pd.DataFrame(columns=['hotel_name', 'rating','food_type', 'location','offer_above', 'offer_percentage'],data=np.array([a,b,c,d,e,f]).reshape(1,6)))
+    if st.button('Predict Time'):
+        st.write('Delivery Time'+str(int(n[0])))
+else:
+    col1,col2,col3=st.columns(3)
+    with col1:
+        r=st.number_input('offer_above')
+    with col2:
+        n=st.selectbox('Location',df['location'].unique())
+    with col3:
+        o=st.number_input('offer_percentage')
+    x=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['time_minutes'].mean().nlargest(10)
+    fig1=px.line(x)
+    st.write(fig1)
+    y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
+    fig2=px.line(y)
+    st.write(fig2)
+    w=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['time_minute'].mean().nlargest(10)
+    fig3=px.line(w)
+    st.write(fig3)
+    z=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('food_type')['rating'].mean().nlargest(10)
+    fig4=px.line(z)
+    st.write(fig4)
+    
+    
 
 
