@@ -102,7 +102,7 @@ y=df['time_minutes']
 
 
 # In[73]:
-!pip install sklearn
+
 
 from sklearn.model_selection import train_test_split
 
