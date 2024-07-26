@@ -224,7 +224,7 @@ else:
         o=st.slider('% OFF You Need',min_value=0, max_value=100, value=10, step=10)
     x=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['time_minutes'].mean().nlargest(10)
     if x.shape[0]!=0:
-        fig1=px.line(x)\
+        fig1=px.line(x)
         fig1.update_layout(
             title={
                 'text': "Hotel Vs Time Taken",
