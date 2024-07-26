@@ -226,13 +226,6 @@ else:
     if x.shape[0]!=0:
         fig1=px.line(x)
         fig1.update_layout(
-            title={
-                'text': "Hotel Vs Time Taken",
-                'y':0.9,
-                'x':0.9,
-                'xanchor': 'right',
-                'yanchor': 'top'})
-        fig1.update_layout(
             title="Hotel Vs Time Taken",
             xaxis_title="Hotel Name",
             yaxis_title="Time Of Delivery",
@@ -241,13 +234,6 @@ else:
     y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
     if y.shape[0]!=0:  
         fig2=px.line(y)
-        fig2.update_layout(
-            title={
-                'text': "Hotel Vs Rating",
-                'y':0.9,
-                'x':0.9,
-                'xanchor': 'right',
-                'yanchor': 'top'})
         fig2.update_layout(
             title="Hotel Vs Rating",
             xaxis_title="Hotel Name",
