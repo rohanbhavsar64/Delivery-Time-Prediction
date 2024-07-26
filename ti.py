@@ -232,7 +232,7 @@ else:
             'xanchor': 'right',
             'yanchor': 'top'})
     fig1.update_layout(
-        title="Plot Title",
+        title="Hotel Vs Time Taken",
         xaxis_title="Hotel Name",
         yaxis_title="Time Of Delivery",
         
@@ -249,7 +249,7 @@ else:
             'xanchor': 'right',
             'yanchor': 'top'})
     fig2.update_layout(
-        title="Plot Title",
+        title="Hotel Vs Rating",
         xaxis_title="Hotel Name",
         yaxis_title="Rating",
         legend_title="Legend Title",
