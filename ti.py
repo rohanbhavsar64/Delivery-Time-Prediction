@@ -240,6 +240,7 @@ else:
         )
     st.write(fig1)
     y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)\
+    fig2=px.line(y)
     fig2.update_layout(
         title={
             'text': "Hotel Vs Rating",
@@ -247,7 +248,7 @@ else:
             'x':0.9,
             'xanchor': 'right',
             'yanchor': 'top'})
-        fig.update_layout(
+    fig2.update_layout(
         title="Plot Title",
         xaxis_title="Hotel Name",
         yaxis_title="Rating",
@@ -258,7 +259,6 @@ else:
             color="RebeccaPurple"
         )
         )
-    fig2=px.line(y)
     st.write(fig2)
     
     
