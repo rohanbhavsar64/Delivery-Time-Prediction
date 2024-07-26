@@ -223,29 +223,28 @@ else:
     with col3:
         o=st.slider('% OFF You Need',min_value=0, max_value=100, value=10, step=10)
     x=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['time_minutes'].mean().nlargest(10)
-    if x.shape[0]!=0:
-        fig1=px.line(x)
-        fig1.update_layout(
-            title="Hotel Vs Time Taken",
-            xaxis_title="Hotel Name",
-            yaxis_title="Time Of Delivery",
+    fig1=px.line(x)
+    fig1.update_layout(
+        title="Hotel Vs Time Taken",
+        xaxis_title="Hotel Name",
+        yaxis_title="Time Of Delivery",
         )
-        st.write(fig1)
+    st.write(fig1)
     y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
-    if y.shape[0]!=0:  
-        fig2=px.line(y)
-        fig2.update_layout(
-            title="Hotel Vs Rating",
-            xaxis_title="Hotel Name",
-            yaxis_title="Rating",
-            legend_title="Legend Title",
-            font=dict(
-                family="Courier New, monospace",
-                size=18,
-                color="RebeccaPurple"
-            )
-            )
-        st.write(fig1)
+
+    fig2=px.line(y)
+    fig2.update_layout(
+        title="Hotel Vs Rating",
+        xaxis_title="Hotel Name",
+        yaxis_title="Rating",
+        legend_title="Legend Title",
+        font=dict(
+            family="Courier New, monospace",
+            size=18,
+            color="RebeccaPurple"
+        )
+        )
+    st.write(fig2)
     
     
 
