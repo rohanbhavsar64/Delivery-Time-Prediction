@@ -239,7 +239,7 @@ else:
         
         )
     st.write(fig1)
-    y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)\
+    y=df[(df['offer_above']<=r)&(df['offer_percentage']>=o)&(df['location']==n)].groupby('hotel_name')['rating'].mean().nlargest(10)
     fig2=px.line(y)
     fig2.update_layout(
         title={
